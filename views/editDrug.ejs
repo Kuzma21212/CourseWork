@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редагувати</title>
+    <link rel="stylesheet" href="/editDrug.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Редагування особистих даних</h1>
+        <div class="card">
+            <form action="/drugs/edit/<%= drug._id %>" method="POST">
+                <div class="form-group">
+                    <label for="name">П. І. Б.</label>
+                    <input type="text" id="name" name="name" value="<%= drug.name %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Кількість</label>
+                    <input type="number" id="quantity" name="quantity" value="<%= drug.quantity %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="expirationDate">Дата закінчення терміну дії</label>
+                    <input type="date" id="expirationDate" name="expirationDate"
+                        value="<%= new Date(drug.expirationDate).toISOString().substring(0, 10) %>" required>
+                </div>
+                <!-- Нове поле для вибору підрозділу -->
+                <div class="form-group">
+                    <label for="department">Підрозділ</label>
+                    <select id="department" name="department" required>
+                        <option value="Кардіологія" <%= drug.department === 'Кардіологія' ? 'selected' : '' %>>Кардіологія</option>
+                        <option value="Неврологія" <%= drug.department === 'Неврологія' ? 'selected' : '' %>>Неврологія</option>
+                        <option value="Терапія" <%= drug.department === 'Терапія' ? 'selected' : '' %>>Терапія</option>
+                        <option value="Педіатрія" <%= drug.department === 'Педіатрія' ? 'selected' : '' %>>Педіатрія</option>
+                        <option value="Інше" <%= drug.department === 'Інше' ? 'selected' : '' %>>Інше</option>
+                    </select>
+                </div>
+                <!-- Кінець нового поля -->
+                <button type="submit" class="button">Оновити</button>
+            </form>
+        </div>
+        <a href="/drugs" class="button">Повернутися до списку пацієнтів</a>
+    </div>
+</body>
+
+</html>

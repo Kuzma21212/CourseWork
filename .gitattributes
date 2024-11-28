@@ -1,0 +1,12 @@
+# Normalize line endings for text files
+* text=auto
+
+# Explicitly set LF for shell scripts, code files, etc.
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+
+# Explicitly set CRLF for files that require Windows-style EOL
+*.bat text eol=crlf
+*.cmd text eol=crlf

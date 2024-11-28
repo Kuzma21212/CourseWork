@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Додати нового пацієнта</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Додати нового пацієнта</h1>
+        <div class="card">
+            <form action="/drugs/add" method="POST">
+                <div class="form-group">
+                    <label for="name">Ім'я</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Вік</label>
+                    <input type="number" id="quantity" name="quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="expirationDate">Дата госпіталізації</label>
+                    <input type="date" id="expirationDate" name="expirationDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="department">Підрозділ</label>
+                    <select id="department" name="department" required>
+                        <option value="" disabled selected>Оберіть підрозділ</option>
+                        <option value="Піхота">Піхота</option>
+                        <option value="Артилерія">Артилерія</option>
+                        <option value="Розвідка">Розвідка</option>
+                        <option value="Танкові війська">Танкові війська</option>
+                        <option value="Медичний підрозділ">Медичний підрозділ</option>
+                        <option value="Інженерні війська">Інженерні війська</option>
+                    </select>
+                </div>
+                <button type="submit" class="button">Додати Пацієнта</button>
+            </form>
+        </div>
+        <a href="/drugs" class="button">Переглянути Список Пацієнтів</a>
+    </div>
+</body>
+
+</html>

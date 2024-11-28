@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug List</title>
+    <link rel="stylesheet" href="/drugList.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h2>Додати нового пацієнта</h2>
+        <div class="card">
+            <form action="/drugs/add" method="POST">
+                <div class="form-group">
+                    <label for="name">П. І. Б.</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Захворювання</label>
+                    <input type="text" id="quantity" name="quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="expirationDate">Дата Реєстрації Захворювання</label>
+                    <input type="date" id="expirationDate" name="expirationDate" required>
+                </div>
+                <!-- НОВЕ ПОЛЕ ДЛЯ ПІДРОЗДІЛУ -->
+                <div class="form-group">
+                    <label for="department">Підрозділ</label>
+                    <select id="department" name="department" required>
+                        <option value="" disabled selected>Оберіть підрозділ</option>
+                        <option value="Піхота">Піхота</option>
+                        <option value="Артилерія">Артилерія</option>
+                        <option value="Розвідк">Розвідка</option>
+                        <option value="Танкові війська">Танкові війська</option>
+                    </select>
+                </div>
+                <!-- КІНЕЦЬ НОВОГО ПОЛЯ -->
+                <button type="submit" class="button">Додати Захворювання</button>
+            </form>
+        </div>
+        <h1>Список пацієнтів</h1>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>П. І. Б.</th>
+                        <th>Захворювання</th>
+                        <th>Дата Реєстрації Захворювання</th>
+                        <th>Підрозділ</th> <!-- ДОДАНА КОЛОНКА -->
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% drugs.forEach(function(drug) { %>
+                        <tr>
+                            <td>
+                                <%= drug.name %>
+                            </td>
+                            <td>
+                                <%= drug.quantity %>
+                            </td>
+                            <td>
+                                <%= new Date(drug.expirationDate).toLocaleDateString() %>
+                            </td>
+                            <td>
+                                <%= drug.department %> <!-- ВІДОБРАЖЕННЯ ПІДРОЗДІЛУ -->
+                            </td>
+                            <td>
+                                <a href="/drugs/edit/<%= drug._id %>" class="button">Редагувати</a>
+                                <a href="/drugs/delete/<%= drug._id %>" class="button">Видалити</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
